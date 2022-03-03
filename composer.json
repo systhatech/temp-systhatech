@@ -12,7 +12,9 @@
     "minimum-stability": "dev",
     "require": {},
     "autoload": {
-        "psr-4": {}
+        "psr-4": 
+		"Systha\\systhatech\\": "src/"
+		}
     },
     "extra": {
         "laravel": {
