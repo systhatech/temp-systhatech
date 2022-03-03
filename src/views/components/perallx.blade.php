@@ -1,0 +1,1 @@
+<div class="bg-perallx" data-parallax="scroll" data-image-src="systhatech/images/others/mockup-bg.png"> </div>

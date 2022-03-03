@@ -1,0 +1,24 @@
+{
+    "name": "systha/systhatech",
+    "description": "SysthaTech Web Template",
+    "type": "libarary",
+    "license": "Systha Tech copywrite 2022",
+    "authors": [
+        {
+            "name": "Suman Thapa",
+            "email": "nepalnme@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {}
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Systha\\systhatech\\MakepackageServiceProvider"
+            ]
+        }
+    }
+}
