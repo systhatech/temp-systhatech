@@ -38,7 +38,7 @@ class InstallCommand extends Command {
 
     public function handle(Filesystem $files){
 		$this->files = $files;
-		$this->dir = base_path()."\\packages";
+		$this->dir = base_path();
         $this->handlePublic();
         $this->handleSeeds();
         $this->info("systhatech Package Installed successfully.\t-".now());
@@ -49,10 +49,9 @@ class InstallCommand extends Command {
 
     protected function handlePublic(){
 
-		$storage_folder = $this->dir."\\storage";
 		$package_folder = $this->dir."\\vendor\\systha\\systhatech";
-		$this->file->copy($package_folder."\\Publishable\\systhatech", $this->dir."\\public")
-		$this->file->copy($package_folder."\\Publishable\\systhatech\\storage\CMS", $this->dir."\\storage")
+		$this->files->copyDirectory($package_folder."\\Publishable\\systhatech", $this->dir."\\public\\systhatech");
+		$this->files->copyDirectory($package_folder."\\Publishable\\storage\CMS", $this->dir."\\storage\CMS");
 
 	  }
 
