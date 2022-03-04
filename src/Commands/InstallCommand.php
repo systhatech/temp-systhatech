@@ -12,11 +12,15 @@
 
 namespace Systha\systhatech\Commands;
 
-use Systha\Student\App\Models\Model\Menus;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\Console\Input\InputOption;
+use Systha\systhatech\database\seeds\VendorTemplatesTableSeeder;
+use Systha\systhatech\database\seeds\FrontendMenusTableSeeder;
+use Systha\systhatech\database\seeds\VendorMenuComponentsTableSeeder;
+use Systha\systhatech\database\seeds\VendorComponentPostsTableSeeder;
+use Systha\systhatech\database\seeds\EcommFilesTableSeeder;
 
 class InstallCommand extends Command {
 
@@ -31,7 +35,8 @@ class InstallCommand extends Command {
 
     public function handle(){
         $this->handleAssets();
-        $this->handleConfig();
+       // $this->handleConfig();
+	   $this->handlePublic();
         $this->handleSeeds();
         $this->handleViews();
         $this->info("systhatech Package Installed successfully.\t-".now());
@@ -64,7 +69,27 @@ class InstallCommand extends Command {
 
     // Handing Seeds
     protected function handleSeeds(){
-        $this->generateMenu();
+       // $this->generateMenu();
+	   
+	    Artisan::call('db:seed', [
+                '--class' => VendorTemplatesTableSeeder::class,
+            ]);
+			
+	   Artisan::call('db:seed', [
+                '--class' => FrontendMenusTableSeeder::class,
+            ]);
+            Artisan::call('db:seed', [
+                '--class' => VendorMenuComponentsTableSeeder::class,
+            ]);
+            Artisan::call('db:seed', [
+                '--class' => VendorComponentPostsTableSeeder::class,
+            ]);
+			  Artisan::call('db:seed', [
+                '--class' => EcommFilesTableSeeder::class,
+            ]);
+			
+			
+            $this->info("Seeded Systha Packages\t-" . now());
     }
 
     // Handling Menus

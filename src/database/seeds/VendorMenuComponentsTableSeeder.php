@@ -15,7 +15,7 @@ class VendorMenuComponentsTableSeeder extends Seeder
     public function run()
     {
         
-
+ \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         \DB::table('vendor_menu_components')->delete();
         
         \DB::table('vendor_menu_components')->insert(array (

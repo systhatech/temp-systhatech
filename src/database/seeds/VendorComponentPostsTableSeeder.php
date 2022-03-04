@@ -15,7 +15,7 @@ class VendorComponentPostsTableSeeder extends Seeder
     public function run()
     {
         
-
+ \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         \DB::table('vendor_component_posts')->delete();
         
         \DB::table('vendor_component_posts')->insert(array (

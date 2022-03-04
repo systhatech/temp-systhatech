@@ -15,7 +15,7 @@ class EcommFilesTableSeeder extends Seeder
     public function run()
     {
         
-
+ \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         \DB::table('ecomm_files')->delete();
         
         \DB::table('ecomm_files')->insert(array (
