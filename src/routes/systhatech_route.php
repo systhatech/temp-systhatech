@@ -11,6 +11,6 @@
 
 
 Route::get('/cms/{any}', 'systhatechController@cms');
-Route::post('cms/enq', 'systhatechController@enq');
+Route::post('cms/enq', 'systhatechController@requestList');
 Route::get('/cms/details/page', 'systhatechController@details');
 Route::get('/', 'systhatechController@cms');

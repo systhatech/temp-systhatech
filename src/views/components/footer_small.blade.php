@@ -133,7 +133,7 @@ if(valid ==1){
   
 
    $.ajax({
-     url :'/systhatech2/enq',
+     url :'/cms/enq',
      method:'post',
      data :data,
      beforeSend:function(){

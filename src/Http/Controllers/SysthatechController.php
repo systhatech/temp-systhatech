@@ -21,6 +21,7 @@ use Systha\vendorpackage\Models\FrontendMenu;
 use Systha\vendorpackage\Models\VendorMenuComponent;
 use Systha\vendorpackage\Models\VendorComponentPost;
 use Systha\systhatech\helpers\CmsHelper as CmsHelper;
+use Systha\Subscription\Model\RequestList; 
 
 class SysthatechController extends Controller{
 
@@ -151,6 +152,38 @@ class SysthatechController extends Controller{
         }
         return $product_menu; 
     
+    }
+
+    public function requestList(Request $req){
+
+         $enq = new RequestList();
+         $ip = $req->getClientIp(true);
+         $client = new \GuzzleHttp\Client(['verify' => false]);      
+         $res = $client->request('GET', "http://ip-api.com/php/".$ip);
+         $data = unserialize($res->getBody()->getContents());
+     
+         $enq->contact_person = $req->contact_person;
+         $enq->email = $req->email; 
+         $enq->phone = $req->phone;
+         $enq->status = "new";
+         $enq->city = $req->city; 
+         $enq->product = $req->product;
+         $enq->des = $req->des; 
+         $enq->ip = $req->getClientIp(true);
+         $enq->lat = isset($data['lat']) ? $data['lat']:'';
+         $enq->lan = isset($data['lan'] ? $data['lan']:'';
+         $enq->city = isset($data['city'] ? $data['city']:'';
+         $enq->state = isset($data['region'] ? $data['region']:'';
+         $enq->country = isset($data['countryCode'] ? $data['countryCode']:'';
+         $enq->timezone = isset($data['timezone'] ? $data['timezone']:''; 
+         $enq->save();
+
+          return response()->json([
+            "message" => "Thank you for your request. We will get back to you asap."
+        ]);
+
+
+
     }
 
 
