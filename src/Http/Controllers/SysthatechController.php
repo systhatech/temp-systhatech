@@ -171,11 +171,11 @@ class SysthatechController extends Controller{
          $enq->des = $req->des; 
          $enq->ip = $req->getClientIp(true);
          $enq->lat = isset($data['lat']) ? $data['lat']:'';
-         $enq->lan = isset($data['lan'] ? $data['lan']:'';
-         $enq->city = isset($data['city'] ? $data['city']:'';
-         $enq->state = isset($data['region'] ? $data['region']:'';
-         $enq->country = isset($data['countryCode'] ? $data['countryCode']:'';
-         $enq->timezone = isset($data['timezone'] ? $data['timezone']:''; 
+         $enq->lan = isset($data['lan']) ? $data['lan']:'';
+         $enq->city = isset($data['city']) ? $data['city']:'';
+         $enq->state = isset($data['region']) ? $data['region']:'';
+         $enq->country = isset($data['countryCode']) ? $data['countryCode']:'';
+         $enq->timezone = isset($data['timezone']) ? $data['timezone']:''; 
          $enq->save();
 
           return response()->json([
