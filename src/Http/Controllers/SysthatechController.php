@@ -24,8 +24,10 @@ use Systha\vendorpackage\Models\StaticContent;
 use Systha\vendorpackage\Models\FrontendMenu;
 use Systha\vendorpackage\Models\VendorMenuComponent;
 use Systha\vendorpackage\Models\VendorComponentPost;
+use Systha\vendorpackage\Models\EmailSubscription;
 use Systha\systhatech\helpers\CmsHelper as CmsHelper;
 use Systha\Subscription\Model\RequestList; 
+
 
 
 
@@ -161,6 +163,23 @@ class SysthatechController extends Controller{
     
     }
 
+public function emailSub(Request $req){
+     
+          $sub = EmailSubscription::firstOrCreate([
+            'email_id'=> $req->email, 
+            'vendor_id'=> $req->vendor_id,
+            'is_subscribed'=> 1,
+            'is_active'=>1 
+          ]);
+
+         return response()->json([
+            "message" => "Your email has been registered."
+        ]);
+
+
+    }
+
+
     public function requestList(Request $req){
 
          $enq = new RequestList();
@@ -190,6 +209,7 @@ class SysthatechController extends Controller{
         ]);
 
     }
+
 
 
     private function sendEmail($req, $data){

@@ -14,8 +14,10 @@
 						<h4>Subscribe to get the latest insights in your inbox.</h4>
 						<small style="color:red; padding :10px; display:none" id='email_newsletter_result'> </small>
 						<form class="mt20" action="#" method="post" name="email_newsletter" id="email_newsletter" >
-							<input type="text" name="subs" id="subs-email" placeholder="Your email please"
+							<input type="text" name="email" id="subs-email" placeholder="Your email please"
 								class="subs-input">
+								<input type="hidden" name="vendor_id" value ="{{ isset($comp_post[0]->vendor_template_id) ? $comp_post[0]->vendor_template_id :'0'}}" >	
+								  <input type="hidden" name="_token" value ="{{csrf_token()}}" >
 							<button class="ree-btn-grdt1 subs-btn" id="email_newsletter_go" onclick="event.preventDefault();" type="submit"><i class="fas fa-arrow-right"></i></button>
 						</form>
 

@@ -62,7 +62,7 @@ if(valid ==1){
 var data = $('#email_newsletter').serialize();
 
 $.ajax({
-     url :'/systhatech2/email_sub',
+     url :'/cms/sub/email',
      method:'post',
      data :data,
      beforeSend:function(){
@@ -70,6 +70,7 @@ $.ajax({
 
      }, success: function(data){
       $('#email_newsletter_result').show();
+      $('#subs-email').val('');
       $('#email_newsletter_result').html("<span style='color:green !important' >Thank you for your email. </span>")
 
      }
