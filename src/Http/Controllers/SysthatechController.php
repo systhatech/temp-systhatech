@@ -12,8 +12,12 @@
 
 namespace Systha\systhatech\HTTP\Controllers;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Lib\Template\TemplateMerge;
+use App\Model\EmailTemplate;
+use App\Model\Lookup\Lookup;
+use App\Http\Controllers\Controller;;
 Use Systha\vendorpackage\Models\Vendor;
 Use Systha\vendorpackage\Models\VendorTemplate;
 use Systha\vendorpackage\Models\StaticContent;
@@ -22,6 +26,9 @@ use Systha\vendorpackage\Models\VendorMenuComponent;
 use Systha\vendorpackage\Models\VendorComponentPost;
 use Systha\systhatech\helpers\CmsHelper as CmsHelper;
 use Systha\Subscription\Model\RequestList; 
+
+
+
 
 class SysthatechController extends Controller{
 
@@ -162,29 +169,70 @@ class SysthatechController extends Controller{
          $res = $client->request('GET', "http://ip-api.com/php/".$ip);
          $data = unserialize($res->getBody()->getContents());
      
-         $enq->contact_person = $req->contact_person;
+         $enq->contact_person = $req->name;
          $enq->email = $req->email; 
          $enq->phone = $req->phone;
          $enq->status = "new";
-         $enq->city = $req->city; 
          $enq->product = $req->product;
          $enq->des = $req->des; 
          $enq->ip = $req->getClientIp(true);
          $enq->lat = isset($data['lat']) ? $data['lat']:'';
-         $enq->lan = isset($data['lan']) ? $data['lan']:'';
+         $enq->lan = isset($data['lan']) ? $data['lon']:'';
          $enq->city = isset($data['city']) ? $data['city']:'';
          $enq->state = isset($data['region']) ? $data['region']:'';
          $enq->country = isset($data['countryCode']) ? $data['countryCode']:'';
          $enq->timezone = isset($data['timezone']) ? $data['timezone']:''; 
          $enq->save();
 
-          return response()->json([
+        $t =$this->sendEmail($req,$data);
+        return response()->json([
             "message" => "Thank you for your request. We will get back to you asap."
         ]);
 
+    }
+
+
+    private function sendEmail($req, $data){
+            $to = $req->email;
+            $emailTemplate = EmailTemplate::code('systhatech_web_response');
+            $subject = $emailTemplate->subject;
+            $message = TemplateMerge::makeTempTemplate($emailTemplate->temp_html, $this->getMergeData($req, $data));
+
+          try {
+
+            Mail::html($message, function ($mail) use ($req, $data, $subject, $to) {
+                $mail->to($to);
+                $mail->subject($subject);
+                $mail->bcc('sales@systhatech.com');
+            });
+
+             } catch (\Throwable $exception) {
+                   return $exception->getMessage();
+        }
 
 
     }
+
+
+    private function getMergeData($req, $data)
+            {
+                return [
+                    'name' => $req->name,
+                    'email' => $req->email, 
+                    'phone' => $req->phone,
+                    'product' => $req->product,
+                    'des' => $req->des,
+                    'ip' => $req->getClientIp(true),
+                    'lat' => isset($data['lat']) ? $data['lat']:'',
+                    'lan' => isset($data['lan']) ? $data['lon']:'',
+                    'city' => isset($data['city']) ? $data['city']:'',
+                    'state' => isset($data['region']) ? $data['region']:'',
+                    'country' => isset($data['countryCode']) ? $data['countryCode']:'',
+                    'timezone' => isset($data['timezone']) ? $data['timezone']:'', 
+                
+                ];
+            }
+
 
 
 }
