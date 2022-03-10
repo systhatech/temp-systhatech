@@ -158,6 +158,13 @@ $('#bt').on('click', function(event){
 
 })
 
+$('#bt1').on('click', function(event){
+ 
+ event.preventDefault();
+ $('html, body').animate({ scrollTop: 3050 }, "slow");
+
+})
+
 
     </script>
   </body>

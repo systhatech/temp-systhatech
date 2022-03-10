@@ -35,10 +35,10 @@
 					@foreach($comp->posts as $k => $i)
 					<div class="col-lg-4 col-sm-6">
 						<div class="ree-media-crd">
-							<div class="rpl-img"><a href="/cms/details/{{$i->id}}"><img src="{{url('/')}}/getFile?path=cms/post&file={{isset($i->image->file_name) ? $i->image->file_name:''}}"
+							<div class="rpl-img"><a href="{{isset($comp->detailpage_link[0]->menu_code) ?  $comp->detailpage_link[0]->link.$comp->detailpage_link[0]->menu_code :'/cms/detail'}}?detail_comp_id={{$comp->detailpage_link[0]->id}}&_detail_post_id={{$i->id}}"><img src="{{url('/')}}/getFile?path=cms/post&file={{isset($i->image->file_name) ? $i->image->file_name:''}}"
 										alt="blog" class="fill-fixed"> </a> </div>
 							<div class="rpl-contt">
-								<div class="blog-quick-inf mb20 mt30"><span><i class="far fa-calendar-alt"></i> 12 March 21</span> <span><i class="fas fa-clock"></i> {{isset($i->sub_title)? $i->sub_title :'' }}</span> </div>
+								<div class="blog-quick-inf mb20 mt30"><span><i class="far fa-calendar-alt"></i> {{ date("m/d/y", strtotime($i->created_at)) }}</span> <span><i class="fas fa-clock"></i> {{isset($i->sub_title)? $i->sub_title :'' }}</span> </div>
 								<h4><a href="{{isset($comp->detailpage_link[0]->menu_code) ?  $comp->detailpage_link[0]->link.$comp->detailpage_link[0]->menu_code :'/cms/detail'}}?detail_comp_id={{$comp->detailpage_link[0]->id}}&_detail_post_id={{$i->id}}">{{isset($i->title)? $i->title :'' }}</a>
 								</h4>
 							</div>

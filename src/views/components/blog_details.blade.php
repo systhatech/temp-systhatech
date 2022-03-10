@@ -1,6 +1,6 @@
 		<!--blog details-->
 
-		<div class="r-bg-a pt85 pb120">		
+		<div class="r-bg-a pt85 pb80">		
 			<div class="container w-992">
 				<div class="row pt80">
 					<div class="col-lg-12">
@@ -11,7 +11,8 @@
 							<h1>{{isset($detail_post[0]->title) ? $detail_post[0]->title :'' }}</h1>
 							
 						</div>
-					
+							
+							<div class="info-b-center" style="text-align:center; padding-top:25px">Publish at <span>{{ date("m/d/y", strtotime($detail_post[0]->created_at)) }}</span> </div>
 					</div>
 				</div>
 				</div>
@@ -24,23 +25,10 @@
 						<div class="col-lg-12">
 							<div class="sol-img mt60">
 							<img style="display:none" src="{{ url('/') }}/getFile?path=cms/post&file={{isset($detail_post[0]->image->file_name) ? $detail_post[0]->image->file_name:''}}" alt="{{isset($detail_post->title) ? $detail_post->title :'' }}" class="img-fluid" data-aos="fade-in" data-aos-delay="400">	
+							
+								
 							</div>
 							<div class="ree-blog-details">
-								<div class="info-bar">
-									<div class="info-b-left"> 
-										@php 
-										use Carbon\Carbon;
-										 $tag = isset($detail_post[0]->highlights) ? $detail_post[0]->highlights : '';
-										 $tag= explode(",", $tag);
-												@endphp	
-									<a href="#">#Marketing</a> 
-										@foreach($tag as $v5)
-										<a href="#">#{{$v5}}</a> 
-										@endforeach 
-									
-									</div>
-									<div class="info-b-right">Publish at <span>{{ date("m/d/y", strtotime($detail_post[0]->created_at)) }}</span> </div>
-								</div>
 								
 								{!! isset($detail_post[0]->description) ? $detail_post[0]->description : ''  !!}
 							</div>

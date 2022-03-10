@@ -27,7 +27,7 @@
             <div class="creative-img {{isset($color_code[$k])? $color_code[$k] : 'reebga' }}"><img src="{{url('/')}}/getFile?path=cms/post&file={{isset($i->image->file_name) ? $i->image->file_name:''}}" 
             alt="{{isset($i->title)?$i->title :'' }}" class="img-fluid"></div>
             <div class="creative-cntnt">
-              <h4 class="mb15"><a href="service-details.html">  {{isset($i->title)?$i->title :'' }}</a></h4>
+              <h4 class="mb15"><a href="#">  {{isset($i->title)?$i->title :'' }}</a></h4>
               <p>{{isset($i->highlight)?$i->highlight :'' }}</p>
               <a href="{{isset($i->link_url)?$i->link_url :'#' }}" class="ree-card-link mt30">Reqeust Demo <i class="fas fa-arrow-right fa-btn"></i></a>
             </div>

@@ -80,8 +80,9 @@ class SysthatechController extends Controller{
        $d['footer_menu']  =  CmsHelper::menufooter($this->menus); 
        $d['product_menu'] = CmsHelper::menu_get_parent_group($this->menus, "2");
        $d['custom_menu'] = CmsHelper::menu_get_parent_group($this->menus, "1");
-    //  dd($d['custom_menu']);
-
+       $d['all_menu'] = $this->menus;
+    //  dd($d);
+ //dd($d['comp_post']->toArray());
        $d['product_menu']= $this->product_child_menu($d['product_menu'] ); 
        $d['cato'] =CmsHelper::group_by_cato($d['comp_post'], "category");
        
@@ -124,7 +125,7 @@ class SysthatechController extends Controller{
         $comp_post = VendorMenuComponent::where('page_id', $menu->id)->with('posts')->orderBy('seq_no', 'asc')->get();
             foreach ($comp_post as $k=>&$v){   
                 if( isset($v->ref_post) && isset($v->ref_comp_id) ){
-                    $post = VendorComponentPost::whereIn('page_id',[$v->page_id, $v->ref_post])->whereIn('component_id',[$v->component_id, $v->ref_comp_id])->get();
+                    $post = VendorComponentPost::whereIn('page_id',[$v->page_id, $v->ref_post])->whereIn('component_id',[$v->component_id, $v->ref_comp_id])->where(['is_deleted'=>0])->get();
                     $comp_post[$k]['posts'] = $post; 
                 }  
                 $detail_page_link = FrontendMenu::where('id',$v->page_id)->get(); 

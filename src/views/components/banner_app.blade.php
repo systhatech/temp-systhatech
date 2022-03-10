@@ -27,7 +27,7 @@
                         @endforeach  
                      </div>
                      <div class="btn-sets2 vcenter  mt20" data-aos="fade-in" data-aos-delay="1100">
-                        <a href="get-quote.html" class="ree-btn  ree-btn-grdt1 mw-80 mr20 mt20">Talk to Our Expert <i class="fas fa-arrow-right fa-btn"></i></a>  
+                        <a href="#" class="ree-btn  ree-btn-grdt1 mt40 mw-80" id="bt1" data-aos="fade-in" data-aos-delay="800">Enquire now <i class="fas fa-arrow-right fa-btn"></i></a>  
                      </div>
                   </div>
                </div>

@@ -12,7 +12,7 @@
               <h1 class="mb30" data-aos="fade-in" data-aos-delay="200"><span  style="color:#4a4a4a">{{$i->title}}</span> </h1>
               <p data-aos="fade-in" data-aos-delay="500">{!! $i->short_description !!}
               </p>
-              <a href="get-quote.html" class="ree-btn  ree-btn-grdt1 mt40 mw-80" data-aos="fade-in" data-aos-delay="800">Let's Talk <i class="fas fa-arrow-right fa-btn"></i></a>
+              <a href="/cms/quote" class="ree-btn  ree-btn-grdt1 mt40 mw-80" data-aos="fade-in" data-aos-delay="800">Let's Talk <i class="fas fa-arrow-right fa-btn"></i></a>
             </div>
           </div>
           <div class="col-md-6 col-sm-12 vcenter">

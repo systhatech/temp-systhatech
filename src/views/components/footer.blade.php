@@ -20,9 +20,9 @@
             <div class="col footer-head">
               <h5>Follow Us</h5>
               <ul class="footer-links-list social-linkz">
-                <li><a href="javascript:void(0)"><span><i class="fab fa-facebook-f"></i></span> Facebook</a>	</li>
-                <li><a href="javascript:void(0)"><span><i class="fab fa-twitter"></i></span> Twitter </a>	</li>
-                <li><a href="javascript:void(0)"><span><i class="fab fa-instagram"></i></span> Instagram</a> </li>
+                <li><a href="https://www.facebook.com/systhatech" target="_blank"><span><i class="fab fa-facebook-f"></i></span> Facebook</a>	</li>
+                <li><a href="https://twitter.com/systhatech" target="_blank"><span><i class="fab fa-twitter"></i></span> Twitter </a>	</li>
+                <li><a href="https://www.instagram.com/systhatech/" target="_blank"><span><i class="fab fa-instagram"></i></span> Instagram</a> </li>
                 <li><a href="javascript:void(0)"><span><i class="fab fa-youtube"></i></span> Youtube</a> </li>
               </ul>
             </div>

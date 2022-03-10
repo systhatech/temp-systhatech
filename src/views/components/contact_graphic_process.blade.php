@@ -1,8 +1,13 @@
   <!--contact info-->
+  
+  @php 
+	$product="";
+  @endphp
   <div class="contact-form-sec sec-pad r-bg-d" @if(isset($comp->bg_color)) style="background-color:{{$comp->bg_color}}" @endif>
 		<div class="container">
         @foreach($comp->posts as $k => $i)
-         @if($i->type !="point")
+		@php $product = $i->title; @endphp
+         @if($i->type!="point")
 				<div class="row flx-end">				
 					<div class="col-lg-6">
 						<div class="sec-heading m-center">
@@ -61,7 +66,7 @@
 										<div class="fieldsets row">
 											<div class="col-md-6"><input type="number" data-valid="0" id="phone" placeholder="Contact Number" name="phone"></div>
 											<div class="col-md-6"><select name="service">
-												<option>FoodTruck</option>
+												<option value ="{{ $product }}">{{ $product }}</option>
 											
 											</select></div>
 										</div>
