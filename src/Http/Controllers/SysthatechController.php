@@ -188,16 +188,16 @@ public function emailSub(Request $req){
          $client = new \GuzzleHttp\Client(['verify' => false]);      
          $res = $client->request('GET', "http://ip-api.com/php/".$ip);
          $data = unserialize($res->getBody()->getContents());
-     
+       
          $enq->contact_person = $req->name;
          $enq->email = $req->email; 
          $enq->phone = $req->phone;
          $enq->status = "new";
-         $enq->product = $req->product;
-         $enq->des = $req->des; 
+         $enq->product = $req->service;
+         $enq->des = $req->message; 
          $enq->ip = $req->getClientIp(true);
          $enq->lat = isset($data['lat']) ? $data['lat']:'';
-         $enq->lan = isset($data['lan']) ? $data['lon']:'';
+         $enq->lan = isset($data['lon']) ? $data['lon']:'';
          $enq->city = isset($data['city']) ? $data['city']:'';
          $enq->state = isset($data['region']) ? $data['region']:'';
          $enq->country = isset($data['countryCode']) ? $data['countryCode']:'';
