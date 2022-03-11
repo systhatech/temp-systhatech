@@ -1,0 +1,17 @@
+SET FOREIGN_KEY_CHECKS =0;
+TRUNCATE `portal_systha`.`subscriptions`;
+TRUNCATE `portal_systha`.`subscription_products`;
+TRUNCATE `portal_systha`.`subscription_cart`;
+TRUNCATE `portal_systha`.`sub_quotes`;
+TRUNCATE `portal_systha`.`sub_payments`;
+TRUNCATE `portal_systha`.`sub_orders`;
+TRUNCATE `portal_systha`.`sub_order_items`;
+TRUNCATE `portal_systha`.`request_list`;
+TRUNCATE `portal_systha`.`clients`;
+TRUNCATE `portal_systha`.`inv_taxes`;
+TRUNCATE `portal_systha`.`inv_line_items`;
+TRUNCATE `portal_systha`.`inv_heads`;
+TRUNCATE `portal_systha`.`contracts`;
+TRUNCATE `portal_systha`.`contract_templates`;
+TRUNCATE `portal_systha`.`contract_template_items`;
+TRUNCATE `portal_systha`.`contract_template_headers`;
