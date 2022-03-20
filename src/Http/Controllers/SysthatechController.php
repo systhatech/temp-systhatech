@@ -93,11 +93,15 @@ class SysthatechController extends Controller{
     public function cms_route_mange($req){   
         $path = $req->path();
         $path = explode("/", $path);
-        if(!isset($path[1])|| $path[1] ==""):
+	    if(!isset($path[1])|| $path[1] ==""):
           //  return redirect('/');
           $path[1] = "home";
         endif;
-      
+		$path_parsal= explode('.', $path[1]);
+		if(isset($path_parsal[0])){
+			$path[1] = $path_parsal[0];
+		}
+		
         $menu= FrontendMenu::where('menu_code', $path[1])->first(); 
 
          if(!is_object($menu)):
@@ -122,6 +126,7 @@ class SysthatechController extends Controller{
     
 
     public function comp_post($menu){
+		//dd($menu);
         $comp_post = VendorMenuComponent::where('page_id', $menu->id)->with('posts')->orderBy('seq_no', 'asc')->get();
             foreach ($comp_post as $k=>&$v){   
                 if( isset($v->ref_post) && isset($v->ref_comp_id) ){
